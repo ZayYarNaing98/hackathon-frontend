@@ -1,15 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "./Home";
-import SettingsPage from "./Settings";
+import { Suspense } from "react";
+import DashboardTemplate from "./Dashboard";
+import DashboardLoginTemplate from "@/templates/Dashboard/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: (
+      <Suspense>
+        <DashboardLoginTemplate />
+      </Suspense>
+    ),
   },
   {
-    path: "/settings",
-    element: <SettingsPage />,
+    path: "/dashboard",
+    element: (
+      <Suspense>
+        <DashboardTemplate />
+      </Suspense>
+    ),
   },
 ]);
 
