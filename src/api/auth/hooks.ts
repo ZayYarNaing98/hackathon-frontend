@@ -1,16 +1,25 @@
-import { useMutation } from "react-query";
+import { UseMutationOptions, useMutation } from "react-query";
 import { useErrorHandler } from "../hooks";
-import { AuthApiInput } from "./api";
-import APIs from "..";
+import { AuthApiInput, AuthApiResponse } from "./api";
+import APIs, { APIsResponse } from "..";
 
-export const useQueryMutationAuth = () => {
-  const errorHandler = useErrorHandler();
+export const useQueryMutationAuth = ({
+  onSuccess,
+  onError,
+  ...options
+}: UseMutationOptions<
+  APIsResponse<AuthApiResponse>,
+  unknown,
+  AuthApiInput
+> = {}) => {
+  const errorHandler = useErrorHandler(onError);
   return useMutation({
     mutationKey: "auth",
-    mutationFn: (data: AuthApiInput) => APIs.authApi.login(data),
-    onSuccess: (data) => {
-      return data;
+    mutationFn: (data) => APIs.authApi.login(data),
+    onSuccess: (data, variables, context) => {
+      onSuccess?.(data, variables, context);
     },
     onError: errorHandler,
+    ...options,
   });
 };

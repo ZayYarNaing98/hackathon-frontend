@@ -30,7 +30,6 @@ const formSchema = z.object({
 export function ProfileForm() {
   const navigate = useNavigate();
   const { setToken } = useTokenStore();
-  const queryAuth = useQueryMutationAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,26 +39,26 @@ export function ProfileForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    queryAuth
-      .mutateAsync(values)
-      .then((data) => {
-        const { token } = data.data;
-        setToken(token);
-      })
-      .then(() => {
-        navigate({
-          pathname: "/dashboard",
-        });
-      })
-      .catch(() => {
-        form.setError("email", {
-          message: "Invalid Email",
-        });
-        form.setError("password", {
-          message: "Invalid Password",
-        });
+  const queryAuth = useQueryMutationAuth({
+    onSuccess(data) {
+      const { token } = data.data;
+      setToken(token);
+      navigate({
+        pathname: "/dashboard",
       });
+    },
+    onError() {
+      form.setError("email", {
+        message: "Invalid Email",
+      });
+      form.setError("password", {
+        message: "Invalid Password",
+      });
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    queryAuth.mutate(values);
   }
 
   return (
