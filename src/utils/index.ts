@@ -1,4 +1,6 @@
+import { useTokenStore } from "@/stores/storage";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useTitle = (title: string) => {
   const documentDefined = typeof document !== "undefined";
@@ -10,4 +12,16 @@ export const useTitle = (title: string) => {
       document.title = import.meta.env.VITE_APP_TITLE;
     };
   }, [documentDefined, title]);
+};
+
+export const useDashboardLogout = () => {
+  const { removeToken } = useTokenStore();
+  const navigate = useNavigate();
+
+  return () => {
+    removeToken();
+    navigate({
+      pathname: "/",
+    });
+  };
 };

@@ -28,6 +28,6 @@ export const useLayoutStore = create(
         });
       },
     })),
-    { name: "layout-store", storage: createJSONStorage(() => sessionStorage) },
+    { name: "_layout_store", storage: createJSONStorage(() => sessionStorage) },
   ),
 );

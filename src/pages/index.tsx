@@ -2,24 +2,38 @@ import { createBrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
 import DashboardTemplate from "./Dashboard";
 import DashboardLoginTemplate from "@/templates/Dashboard/Login";
+import NotFound404Page from "./NotFound404";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: (
+        <Suspense>
+          <DashboardLoginTemplate />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/dashboard",
+      element: (
+        <Suspense>
+          <DashboardTemplate />
+        </Suspense>
+      ),
+    },
+    {
+      path: "*",
+      element: (
+        <Suspense>
+          <NotFound404Page />
+        </Suspense>
+      ),
+    },
+  ],
   {
-    path: "/",
-    element: (
-      <Suspense>
-        <DashboardLoginTemplate />
-      </Suspense>
-    ),
+    basename: "/",
   },
-  {
-    path: "/dashboard",
-    element: (
-      <Suspense>
-        <DashboardTemplate />
-      </Suspense>
-    ),
-  },
-]);
+);
 
 export default router;

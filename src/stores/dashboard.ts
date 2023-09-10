@@ -5,6 +5,7 @@ import { immer } from "zustand/middleware/immer";
 type States = {
   menu: boolean;
 };
+
 type Actions = {
   toggleMenu(): void;
 };
@@ -20,7 +21,7 @@ export const useDashboardStore = create(
       },
     })),
     {
-      name: "dashboard-store",
+      name: "_dashboard_store",
       storage: createJSONStorage(() => sessionStorage),
     },
   ),
