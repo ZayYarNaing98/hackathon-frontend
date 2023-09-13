@@ -5,6 +5,9 @@ import { DashboardNavbar } from "@/templates/Dashboard/components/Navbar";
 import { useDashboardLogout, useTitle } from "@/utils";
 import DashboardSidebar from "./components/Sidebar";
 import Layout from "./components/Layout";
+import DashboardNavbarTitle from "./components/Navbar/DashboardNavbarTitle";
+import DashboardTable from "./components/Table/DashboardTable";
+import DashboardTableFooter from "./components/Table/DashboardTableFooter";
 
 const DashboardTemplate = () => {
   const toggleMenu = useDashboardStore((store) => store.toggleMenu);
@@ -27,6 +30,9 @@ const DashboardTemplate = () => {
             role: "Admin",
           }}
         />
+        <DashboardNavbarTitle />
+        <DashboardTable />
+        <DashboardTableFooter />
       </Layout>
     </Protected>
   );

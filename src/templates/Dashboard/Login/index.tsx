@@ -125,7 +125,7 @@ const DashboardLoginTemplate = () => {
   return (
     <section className="relative h-screen min-h-screen overflow-hidden">
       <MemoLoginCircleIcon className="absolute bottom-0 left-0 top-0 z-10 scale-150" />
-      <MemoLoginUserIcon className="absolute bottom-6 left-72 z-20 scale-110" />
+      <MemoLoginUserIcon className="absolute bottom-0 left-32 z-20" />
       <div className="absolute bottom-0 left-0 right-0 top-0 z-30 flex justify-end bg-white min-[1050px]:bg-transparent">
         <div className="flex h-screen w-full items-center justify-center px-5 min-[1050px]:w-1/2 xl:px-48">
           <div className="w-full bg-white p-3 ">

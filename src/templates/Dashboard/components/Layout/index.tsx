@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutInterface> = ({ children }) => {
   return (
     <section
       className={cn([
-        "h-screen min-h-screen w-full min-w-full max-w-full overflow-hidden overflow-y-scroll",
+        "relative h-screen min-h-screen w-full min-w-full max-w-full overflow-hidden overflow-y-auto",
         isMenuOpen ? "pl-[350px]" : "",
       ])}
     >

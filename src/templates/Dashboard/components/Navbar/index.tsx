@@ -17,7 +17,7 @@ export const DashboardNavbar = ({
   };
 }) => {
   return (
-    <nav className="sticky left-0 right-0 top-0 flex h-[100px] w-full items-center justify-between bg-white px-8 shadow-[0px_2px_10px_2px_rgb(0,0,0,0.10)]">
+    <nav className="sticky left-0 right-0 top-0 z-40 flex h-[100px] w-full items-center justify-between bg-white px-8 shadow-[0px_2px_10px_2px_rgb(0,0,0,0.10)]">
       <Button
         aria-label="menu button"
         variant="ghost"
