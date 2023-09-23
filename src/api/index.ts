@@ -1,5 +1,6 @@
 import axios from "axios";
 import { authApi } from "./auth/api";
+import { userApi } from "./user/api";
 
 axios.defaults.baseURL = new URL(
   "api",
@@ -13,16 +14,19 @@ export type APIsResponse<T> = {
   message: string;
   data: T;
   meta: {
-    endpoint: string;
     method: string;
-    limit: number;
+    endpoint: string;
+    current_page: number;
+    total_page: number;
     offset: number;
+    limit: number;
     total: number;
   };
 };
 
 const APIs = {
   authApi,
+  userApi,
 };
 
 export default APIs;

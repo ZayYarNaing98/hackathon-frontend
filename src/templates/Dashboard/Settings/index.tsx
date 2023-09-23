@@ -1,4 +1,4 @@
-import { useTitle } from "@/utils";
+import { useTitle } from "@/hooks";
 
 const SettingsTemplate = () => {
   useTitle("settings");

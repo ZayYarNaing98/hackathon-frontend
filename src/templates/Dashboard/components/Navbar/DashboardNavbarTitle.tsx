@@ -1,6 +1,4 @@
-import MemoPlusIcon from "@/components/Icons/PlusBoldIcon";
 import MemoUserActiveIcon from "@/components/Icons/UserActiveIcon";
-import { Button } from "@/components/ui/button";
 
 const DashboardNavbarTitle = () => {
   return (
@@ -11,12 +9,6 @@ const DashboardNavbarTitle = () => {
       <p className="text-[25px] font-medium not-italic text-[#4B2C73]">
         User Management
       </p>
-      <Button className="ml-auto h-[55px] w-[220px] bg-[#8B3DFF] hover:bg-[#612ab3]">
-        <MemoPlusIcon />
-        <p className="ml-3 text-[20px] font-medium not-italic text-white">
-          Add New User
-        </p>
-      </Button>
     </div>
   );
 };

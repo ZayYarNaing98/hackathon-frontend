@@ -7,11 +7,8 @@ export type AuthApiInput = {
 };
 
 export type AuthApiResponse = {
-  email: string;
-  name: string;
+  id: number;
   token: string;
-  image: string;
-  roles: { name: string }[];
 };
 
 export const authApi = {

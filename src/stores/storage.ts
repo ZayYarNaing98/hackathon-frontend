@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { toNumber } from "lodash";
 
-export function useTokenStore() {
+export function appToken() {
   return {
     getToken() {
       return Cookies.get("_token");

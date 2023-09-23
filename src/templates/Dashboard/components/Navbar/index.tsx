@@ -11,8 +11,8 @@ export const DashboardNavbar = ({
   onMenuClick: React.MouseEventHandler<HTMLButtonElement>;
   onLogoutClick: React.MouseEventHandler<HTMLButtonElement>;
   profile: {
-    userName: string;
-    role: string;
+    userName: string | undefined;
+    role: string | undefined;
     profileStyle: "character" | "shape";
   };
 }) => {
@@ -31,8 +31,8 @@ export const DashboardNavbar = ({
       <Profile
         onLogoutClick={onLogoutClick}
         profileStyle={profile?.profileStyle}
-        role={profile?.role}
-        userName={profile?.userName}
+        role={profile?.role ?? ""}
+        userName={profile?.userName ?? ""}
       />
     </nav>
   );

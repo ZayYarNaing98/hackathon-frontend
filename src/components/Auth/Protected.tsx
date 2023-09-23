@@ -1,5 +1,5 @@
 import React from "react";
-import { useTokenStore } from "@/stores/storage";
+import { appToken } from "@/stores/storage";
 import { useNavigate } from "react-router-dom";
 
 type ProtectedProps = {
@@ -8,7 +8,7 @@ type ProtectedProps = {
 
 const Protected: React.FC<ProtectedProps> = ({ children }) => {
   const navigate = useNavigate();
-  const { getToken } = useTokenStore();
+  const { getToken } = appToken();
   const token = getToken();
 
   React.useEffect(() => {

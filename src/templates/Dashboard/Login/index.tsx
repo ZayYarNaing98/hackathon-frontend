@@ -3,7 +3,7 @@ import MemoLoginCircleIcon from "@/components/Icons/LoginCircleIcon";
 import MemoLoginUserIcon from "@/components/Icons/LoginUserIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useTitle } from "@/utils";
+import { useTitle } from "@/hooks";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -16,7 +16,9 @@ import {
 } from "@/components/ui/form";
 import { useNavigate } from "react-router-dom";
 import { useQueryMutationAuth } from "@/api/hooks";
-import { useTokenStore } from "@/stores/storage";
+import { appToken } from "@/stores/storage";
+import { useDashboardStore } from "@/stores/dashboard";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -29,7 +31,8 @@ const formSchema = z.object({
 
 export function ProfileForm() {
   const navigate = useNavigate();
-  const { setToken } = useTokenStore();
+  const { setToken } = appToken();
+  const setAuthInfo = useDashboardStore((store) => store.setAuthInfo);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,6 +45,7 @@ export function ProfileForm() {
   const queryAuth = useQueryMutationAuth({
     onSuccess(data) {
       const { token } = data.data;
+      setAuthInfo(data.data);
       setToken(token);
       navigate({
         pathname: "/dashboard",
@@ -121,7 +125,25 @@ export function ProfileForm() {
 }
 
 const DashboardLoginTemplate = () => {
+  const { getToken } = appToken();
+  const navigate = useNavigate();
+
+  const token = getToken();
+
   useTitle("Dashboard Login");
+
+  useEffect(() => {
+    if (token) {
+      navigate({
+        pathname: "/dashboard",
+      });
+    }
+  }, [navigate, token]);
+
+  if (token) {
+    return null;
+  }
+
   return (
     <section className="relative h-screen min-h-screen overflow-hidden">
       <MemoLoginCircleIcon className="absolute bottom-0 left-0 top-0 z-10 scale-150" />

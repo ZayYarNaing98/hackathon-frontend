@@ -1,4 +1,4 @@
-import { useTokenStore } from "@/stores/storage";
+import { appToken } from "@/stores/storage";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export const useTitle = (title: string) => {
 };
 
 export const useDashboardLogout = () => {
-  const { removeToken } = useTokenStore();
+  const { removeToken } = appToken();
   const navigate = useNavigate();
 
   return () => {
