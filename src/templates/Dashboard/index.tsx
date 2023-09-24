@@ -51,8 +51,6 @@ const DashboardTemplate = () => {
     return null;
   }
 
-  console.log(queryUserBy);
-
   return (
     <Protected>
       <Layout>
