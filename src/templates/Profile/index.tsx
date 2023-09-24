@@ -203,7 +203,7 @@ const ProfileTemplate = () => {
                   <button
                     onClick={() => {
                       navigate({
-                        pathname: "in-progress",
+                        pathname: "/in-progress",
                       });
                     }}
                     className="mt-5 flex h-[60px] w-[364px] items-center justify-center gap-3 rounded-full bg-gradient-to-t from-[#8B3DFF] to-[#5E0FD3] text-[18px] font-semibold text-white"
