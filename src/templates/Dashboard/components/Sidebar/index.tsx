@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { useDashboardStore } from "@/stores/dashboard";
 import { useSidebarStore } from "../../stores";
 import MemoUserActiveIcon from "@/components/Icons/UserActiveIcon";
+import MemoPromoHub from "@/templates/Home/components/icons/PromoHub";
+import { MemoHackathon } from "@/templates/Home/components/icons/NavIcon";
 
 const DashboardSidebar = () => {
   const isMenuOpen = useDashboardStore((store) => store.menu);
@@ -29,7 +31,9 @@ const DashboardSidebar = () => {
         !isMenuOpen && "invisible",
       ])}
     >
-      <div className="mb-[25px] h-[100px] border-b-[1px] border-[#D9D9D9] opacity-20"></div>
+      <div className="mb-[25px] flex h-[100px] items-center justify-center border-b-[1px] border-[#D9D9D9]">
+        <MemoHackathon width={"248px"} height={"30px"} />
+      </div>
       {sidebarLists.map((i, index) => (
         <DashboardSidebarButton
           key={index}

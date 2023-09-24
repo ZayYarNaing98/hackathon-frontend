@@ -14,6 +14,7 @@ import MemoLocationSmallIcon from "../Home/components/icons/LocationSmallIcon";
 import MemoMailSmallIcon from "../Home/components/icons/MailSmallIcon";
 import MemoPhoneSmallIcon from "../Home/components/icons/PhoneSmallIcon";
 import Protected from "../Home/Protected";
+import { useNavigate } from "react-router-dom";
 
 function RightIcon(
   props: React.SVGAttributes<SVGSVGElement> & { fillPath?: string },
@@ -31,6 +32,7 @@ function RightIcon(
 export const MemoRightIcon = React.memo(RightIcon);
 
 const ProfileTemplate = () => {
+  const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState("promotion");
   return (
     <Protected>
@@ -198,7 +200,14 @@ const ProfileTemplate = () => {
                       />
                     </div>
                   </Carousel>
-                  <button className="mt-5 flex h-[60px] w-[364px] items-center justify-center gap-3 rounded-full bg-gradient-to-t from-[#8B3DFF] to-[#5E0FD3] text-[18px] font-semibold text-white">
+                  <button
+                    onClick={() => {
+                      navigate({
+                        pathname: "in-progress",
+                      });
+                    }}
+                    className="mt-5 flex h-[60px] w-[364px] items-center justify-center gap-3 rounded-full bg-gradient-to-t from-[#8B3DFF] to-[#5E0FD3] text-[18px] font-semibold text-white"
+                  >
                     Inquiry about This Promotion <RightIcon />
                   </button>
                 </div>

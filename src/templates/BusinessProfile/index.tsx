@@ -92,16 +92,16 @@ const BusinessProfile = () => {
   useEffect(() => {
     if (
       queryBusinessProfile.isSuccess &&
-      queryBusinessProfile.data.data.length > 0 &&
-      queryCategory.isSuccess
+      queryCategory.isSuccess &&
+      queryBusinessProfile.data.data.length !== 0
     ) {
       const objQB = queryBusinessProfile.data.data[0];
-      form.setValue("name", objQB.name);
-      form.setValue("address", objQB.address);
-      form.setValue("description", objQB.description);
-      form.setValue("email", objQB.email);
-      form.setValue("facebook", objQB.facebook);
-      form.setValue("phone", objQB.phone);
+      form.setValue("name", objQB.name ?? "");
+      form.setValue("address", objQB.address ?? "");
+      form.setValue("description", objQB.description ?? "");
+      form.setValue("email", objQB.email ?? "");
+      form.setValue("facebook", objQB.facebook ?? "");
+      form.setValue("phone", objQB.phone ?? "");
       setTimeout(() => {
         form.setValue(
           "category",

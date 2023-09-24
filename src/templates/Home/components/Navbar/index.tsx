@@ -45,7 +45,7 @@ function HomeNavbar() {
             onClick={() => {
               removeToken();
               navigate({
-                pathname: "/",
+                pathname: "/auth/continue",
               });
             }}
             className="ml-5 h-[50px] w-[119px] rounded-full border-[1.5px] border-solid border-[#8B3DFF] text-[18px] text-[#8B3DFF]"
