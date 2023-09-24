@@ -60,11 +60,13 @@ const userCreateSchema = z
   });
 
 const SubscriptionDialog = () => {
-  const [dialogState, hideDialog, setDialogStatus] = useClientStore((store) => [
-    store.dialogStatus,
-    store.hideDialog,
-    store.setDialogStatus,
-  ]);
+  const [dialogState, directPayment, hideDialog, setDialogStatus] =
+    useClientStore((store) => [
+      store.dialogStatus,
+      store.directPayment,
+      store.hideDialog,
+      store.setDialogStatus,
+    ]);
 
   const formCreate = useForm<z.infer<typeof userCreateSchema>>({
     resolver: zodResolver(userCreateSchema),
@@ -97,6 +99,12 @@ const SubscriptionDialog = () => {
       setAuthInfo(data.data);
       setToken(token);
       setDialogStatus("");
+      if (directPayment.id > 0) {
+        navigate({
+          pathname: "/payment",
+        });
+        return;
+      }
       navigate({
         pathname: "/business-profile",
       });

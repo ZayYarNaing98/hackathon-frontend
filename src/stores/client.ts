@@ -6,12 +6,14 @@ import { immer } from "zustand/middleware/immer";
 export type States = {
   authInfo: AuthApiResponse & { name?: string };
   dialogStatus: "signIn" | "siginUp" | "";
+  directPayment: { id: number };
 };
 
 export type Actions = {
   setDialogStatus(status: States["dialogStatus"]): void;
   hideDialog(): void;
   setAuthInfo(data: AuthApiResponse & { name?: string }): void;
+  setDirectPayment(con: { id: number }): void;
 };
 
 export const useClientStore = create(
@@ -23,6 +25,7 @@ export const useClientStore = create(
         token: "",
         name: "",
       },
+      directPayment: { id: 0 },
       setDialogStatus(status) {
         set((store) => {
           store.dialogStatus = status;
@@ -36,6 +39,11 @@ export const useClientStore = create(
       setAuthInfo(data) {
         set((state) => {
           state.authInfo = data;
+        });
+      },
+      setDirectPayment(con) {
+        set((state) => {
+          state.directPayment = con;
         });
       },
     })),

@@ -21,7 +21,7 @@ export const useDashboardLogout = () => {
   return () => {
     removeToken();
     navigate({
-      pathname: "/",
+      pathname: "/auth/continue",
     });
   };
 };

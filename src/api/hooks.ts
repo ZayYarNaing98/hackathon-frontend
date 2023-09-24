@@ -14,6 +14,7 @@ const useErrorHandler = (onError?: any) => {
     if (!isErrorFunExist) {
       return;
     }
+
     navigate({
       pathname: "/error",
     });

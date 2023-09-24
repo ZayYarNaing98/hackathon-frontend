@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { useDashboardStore } from "@/stores/dashboard";
 import { useSidebarStore } from "../../stores";
 import MemoUserActiveIcon from "@/components/Icons/UserActiveIcon";
-import MemoPromoHub from "@/templates/Home/components/icons/PromoHub";
 import { MemoHackathon } from "@/templates/Home/components/icons/NavIcon";
 
 const DashboardSidebar = () => {

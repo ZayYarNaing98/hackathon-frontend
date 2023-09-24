@@ -3,6 +3,7 @@ import { authApi } from "./auth/api";
 import { userApi } from "./user/api";
 import { businessProfileApi } from "./profile/api";
 import { categoryApi } from "./category/api";
+import { featuresApi } from "./features/api";
 
 axios.defaults.baseURL = new URL(
   "api",
@@ -31,6 +32,7 @@ const APIs = {
   userApi,
   businessProfileApi,
   categoryApi,
+  featuresApi,
 };
 
 export default APIs;

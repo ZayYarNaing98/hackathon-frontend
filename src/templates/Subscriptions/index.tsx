@@ -8,10 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 const SubscriptionTemplate = () => {
   const { getToken } = appClientToken();
-  const [setDialogStatus] = useClientStore((store) => [store.setDialogStatus]);
+  const [setDialogStatus, setDirectPayment] = useClientStore((store) => [
+    store.setDialogStatus,
+    store.setDirectPayment,
+  ]);
+
   const token = getToken();
   const navigate = useNavigate();
-
   const featuresTable = [
     {
       label: "Free Register for Business Profile",
@@ -50,7 +53,10 @@ const SubscriptionTemplate = () => {
       </div>
       <div className="container mt-20 flex justify-center gap-7 overflow-hidden">
         <SubscriptionCard
-          onClick={onSubscribe}
+          onClick={() => {
+            setDirectPayment({ id: 1 });
+            onSubscribe();
+          }}
           title="Basic Plan"
           level={1}
           price={10000}
@@ -58,7 +64,10 @@ const SubscriptionTemplate = () => {
           ctaLabel="Subscribe Now"
         />
         <SubscriptionCard
-          onClick={onSubscribe}
+          onClick={() => {
+            setDirectPayment({ id: 2 });
+            onSubscribe();
+          }}
           title="Standard Plan"
           level={2}
           price={20000}
@@ -66,7 +75,10 @@ const SubscriptionTemplate = () => {
           ctaLabel="Subscribe Now"
         />
         <SubscriptionCard
-          onClick={onSubscribe}
+          onClick={() => {
+            setDirectPayment({ id: 3 });
+            onSubscribe();
+          }}
           title="Premium Plan"
           level={3}
           price={30000}
