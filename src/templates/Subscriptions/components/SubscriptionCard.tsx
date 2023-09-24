@@ -8,6 +8,7 @@ type SubscriptionCardProps = {
   level: number;
   price: number;
   list: string[];
+  onClick: any;
   ctaLabel: string;
 };
 
@@ -52,7 +53,12 @@ function SubscriptionCard(props: SubscriptionCardProps) {
               })}
             </ul>
           </div>
-          <button className="mx-auto mt-11 flex h-[62px] w-[322px] items-center justify-center rounded-full bg-gradient-to-t from-[#8B3DFF] to-[#5E0FD3] text-center text-[18px] text-white">
+          <button
+            onClick={() => {
+              props.onClick();
+            }}
+            className="mx-auto mt-11 flex h-[62px] w-[322px] items-center justify-center rounded-full bg-gradient-to-t from-[#8B3DFF] to-[#5E0FD3] text-center text-[18px] text-white"
+          >
             {props.ctaLabel}
           </button>
         </div>

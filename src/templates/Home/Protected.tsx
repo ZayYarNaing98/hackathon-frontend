@@ -1,5 +1,5 @@
 import React from "react";
-import { appDashboardToken } from "@/stores/storage";
+import { appClientToken } from "@/stores/storage";
 import { useNavigate } from "react-router-dom";
 
 type ProtectedProps = {
@@ -8,13 +8,13 @@ type ProtectedProps = {
 
 const Protected: React.FC<ProtectedProps> = ({ children }) => {
   const navigate = useNavigate();
-  const { getToken } = appDashboardToken();
+  const { getToken } = appClientToken();
   const token = getToken();
 
   React.useEffect(() => {
     if (!token) {
       navigate({
-        pathname: "/auth/continue",
+        pathname: "/",
       });
     }
   }, [token, navigate]);

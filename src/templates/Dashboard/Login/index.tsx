@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { useNavigate } from "react-router-dom";
 import { useQueryMutationAuth } from "@/api/hooks";
-import { appToken } from "@/stores/storage";
+import { appDashboardToken } from "@/stores/storage";
 import { useDashboardStore } from "@/stores/dashboard";
 import { useEffect } from "react";
 
@@ -31,7 +31,7 @@ const formSchema = z.object({
 
 export function ProfileForm() {
   const navigate = useNavigate();
-  const { setToken } = appToken();
+  const { setToken } = appDashboardToken();
   const setAuthInfo = useDashboardStore((store) => store.setAuthInfo);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -125,7 +125,7 @@ export function ProfileForm() {
 }
 
 const DashboardLoginTemplate = () => {
-  const { getToken } = appToken();
+  const { getToken } = appDashboardToken();
   const navigate = useNavigate();
 
   const token = getToken();

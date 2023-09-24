@@ -45,7 +45,12 @@ function PaymentTemplate() {
                 Choose Your Payment Method
               </p>
             </div>
-            <div className=""></div>
+            <div className="">
+              <div className="flex flex-col justify-center rounded-md border-2 border-solid border-[#8B3DFF]">
+                <MemoWavePay width={"90px"} height={"90px"} />
+                <p>Wavepay</p>
+              </div>
+            </div>
           </div>
           <div className="flex-1 rounded-md bg-white p-[42px] shadow-md">
             <div className="flex flex-1 items-center gap-3">
@@ -56,7 +61,7 @@ function PaymentTemplate() {
                 Check your plan information carefully
               </p>
             </div>
-            <div></div>
+            <div className=""></div>
           </div>
         </div>
       </div>

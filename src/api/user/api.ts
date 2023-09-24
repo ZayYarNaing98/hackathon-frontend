@@ -1,6 +1,9 @@
 import axios from "axios";
 import { APIsResponse } from "..";
-import { getTokenAuthorization } from "@/util";
+import {
+  getClientTokenAuthorization,
+  getDashboardTokenAuthorization,
+} from "@/util";
 import { omit } from "lodash";
 
 export type UserApiResponse = {
@@ -73,16 +76,18 @@ export const userApi = {
     return axios
       .get<APIsResponse<UserApiResponse>>(
         `users${props.value.length > 0 ? res : ""}`,
-        getTokenAuthorization(),
+        getDashboardTokenAuthorization(),
       )
       .then((data) => data.data);
   },
 
-  listById(id: number) {
+  listById(id: number, client = false) {
     return axios
       .get<APIsResponse<UserApiResponse>>(
         "users/" + id,
-        getTokenAuthorization(),
+        client
+          ? getClientTokenAuthorization()
+          : getDashboardTokenAuthorization(),
       )
       .then((data) => data.data);
   },
@@ -93,12 +98,15 @@ export const userApi = {
       .then((data) => data.data);
   },
 
+  createWithoutToken(input: UserCreateApiInput) {
+    return axios.post("users/client", input).then((data) => data.data);
+  },
   create(input: UserCreateApiInput) {
     return axios
       .post<APIsResponse<UserApiResponse>>(
         "users",
         input,
-        getTokenAuthorization(),
+        getDashboardTokenAuthorization(),
       )
       .then((data) => data.data);
   },
@@ -108,7 +116,7 @@ export const userApi = {
       .put<APIsResponse<UserApiResponse>>(
         "users/" + input.id,
         omit(input, "id"),
-        getTokenAuthorization(),
+        getDashboardTokenAuthorization(),
       )
       .then((data) => data.data);
   },
@@ -117,7 +125,7 @@ export const userApi = {
     return axios
       .delete<APIsResponse<UserApiResponse>>(
         "users/" + id,
-        getTokenAuthorization(),
+        getDashboardTokenAuthorization(),
       )
       .then((data) => data.data);
   },
@@ -127,7 +135,7 @@ export const userApi = {
       .put(
         `/users/${input.id}/status`,
         omit(input, "id"),
-        getTokenAuthorization(),
+        getDashboardTokenAuthorization(),
       )
       .then((data) => data.data);
   },

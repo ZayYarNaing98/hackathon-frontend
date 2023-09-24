@@ -25,6 +25,7 @@ export const useQueryUser = ({
 
 export const useQueryUserBy = (
   id: number,
+  client: boolean,
   {
     onSuccess,
     onError,
@@ -34,7 +35,7 @@ export const useQueryUserBy = (
   const errorHandler = useErrorHandler(onError);
   return useQuery({
     queryKey: "user-list-by",
-    queryFn: () => APIs.userApi.listById(id),
+    queryFn: () => APIs.userApi.listById(id, client),
     onSuccess,
     onError: errorHandler,
     ...options,
@@ -69,6 +70,25 @@ export const useQueryMutateUserCreate = ({
   return useMutation({
     mutationKey: "user-create",
     mutationFn: (data) => APIs.userApi.create(data),
+    onSuccess,
+    onError: errorHandler,
+    ...options,
+  });
+};
+
+export const useQueryMutateUserCreateWithoutToken = ({
+  onSuccess,
+  onError,
+  ...options
+}: UseMutationOptions<
+  APIsResponse<UserApiResponse>,
+  unknown,
+  UserCreateApiInput
+> = {}) => {
+  const errorHandler = useErrorHandler(onError);
+  return useMutation({
+    mutationKey: "user-create-no-token",
+    mutationFn: (data) => APIs.userApi.createWithoutToken(data),
     onSuccess,
     onError: errorHandler,
     ...options,

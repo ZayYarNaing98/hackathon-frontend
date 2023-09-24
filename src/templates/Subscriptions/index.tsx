@@ -2,8 +2,16 @@ import HomeNavbar from "../Home/components/Navbar";
 import SubscriptionCard from "./components/SubscriptionCard";
 import MemoCrossRedIcon from "./components/icons/CrossRedIcon";
 import MemoCrossGreenIcon from "./components/icons/CrossGreenIcon";
+import { appClientToken } from "@/stores/storage";
+import { useClientStore } from "@/stores/client";
+import { useNavigate } from "react-router-dom";
 
 const SubscriptionTemplate = () => {
+  const { getToken } = appClientToken();
+  const [setDialogStatus] = useClientStore((store) => [store.setDialogStatus]);
+  const token = getToken();
+  const navigate = useNavigate();
+
   const featuresTable = [
     {
       label: "Free Register for Business Profile",
@@ -19,6 +27,16 @@ const SubscriptionTemplate = () => {
     },
   ];
 
+  const onSubscribe = () => {
+    if (token) {
+      navigate({
+        pathname: "/business-profile",
+      });
+    } else {
+      setDialogStatus("signIn");
+    }
+  };
+
   return (
     <div className="h-screen overflow-y-auto pb-52">
       <HomeNavbar />
@@ -32,6 +50,7 @@ const SubscriptionTemplate = () => {
       </div>
       <div className="container mt-20 flex justify-center gap-7 overflow-hidden">
         <SubscriptionCard
+          onClick={onSubscribe}
           title="Basic Plan"
           level={1}
           price={10000}
@@ -39,6 +58,7 @@ const SubscriptionTemplate = () => {
           ctaLabel="Subscribe Now"
         />
         <SubscriptionCard
+          onClick={onSubscribe}
           title="Standard Plan"
           level={2}
           price={20000}
@@ -46,6 +66,7 @@ const SubscriptionTemplate = () => {
           ctaLabel="Subscribe Now"
         />
         <SubscriptionCard
+          onClick={onSubscribe}
           title="Premium Plan"
           level={3}
           price={30000}

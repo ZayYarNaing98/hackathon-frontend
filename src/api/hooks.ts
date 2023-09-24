@@ -1,14 +1,10 @@
-import { appToken } from "@/stores/storage";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
 const useErrorHandler = (onError?: any) => {
   const navigate = useNavigate();
-  const { removeToken } = appToken();
   return (err: AxiosError) => {
     const status = err?.response?.status;
-
-    removeToken();
 
     if (status === 401) {
       return;
@@ -25,5 +21,8 @@ const useErrorHandler = (onError?: any) => {
 };
 
 export * from "./auth/hooks";
+export * from "./category/hooks";
+export * from "./profile/hooks";
+export * from "./user/hooks";
 
 export { useErrorHandler };
