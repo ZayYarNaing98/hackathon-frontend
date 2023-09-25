@@ -15,8 +15,66 @@ import HomeNavbar from "./components/Navbar";
 import Card from "./components/Card";
 import { useNavigate } from "react-router-dom";
 import MainBanner from "@/assets/main_banner.png";
+import imageOne from "@/assets/1.png";
+import imageTwo from "@/assets/2.png";
+import imageThree from "@/assets/3.png";
+import imageFour from "@/assets/4.png";
+import imageFive from "@/assets/5.png";
+import imageSix from "@/assets/6.png";
+import imageSeven from "@/assets/7.png";
+import imageEight from "@/assets/8.png";
 
 const HomeTemplate = () => {
+  const mockData = [
+    {
+      id: 1,
+      title: "Summber Sale",
+      desc: "Rem ipsum sedubel anatis rem ipsum sedubel anatis",
+      image: imageOne,
+    },
+    {
+      id: 2,
+      title: "Big Sale",
+      desc: "Don't know where to start in?",
+      image: imageTwo,
+    },
+    {
+      id: 3,
+      title: "Gift Voucher",
+      desc: "The trainees can enroll from start today. don’t miss chance",
+      image: imageThree,
+    },
+    {
+      id: 4,
+      title: "Giveaway Time",
+      desc: "Don't know where to start in?",
+      image: imageFour,
+    },
+    {
+      id: 5,
+      title: "Electronics collection",
+      desc: "Don't know where to start in?",
+      image: imageFive,
+    },
+    {
+      id: 6,
+      title: "9.9 super sale",
+      desc: "Don't know where to start in?",
+      image: imageSix,
+    },
+    {
+      id: 7,
+      title: "organic skincare sale",
+      desc: "The trainees can enroll from start today. don’t miss chance",
+      image: imageSeven,
+    },
+    {
+      id: 8,
+      title: "new product release",
+      desc: "Don't know where to start in?",
+      image: imageEight,
+    },
+  ];
   const [select, setSelect] = React.useState("FOOD");
   const navigate = useNavigate();
   return (
@@ -77,15 +135,16 @@ const HomeTemplate = () => {
         </button>
       </div>
       <div className="mx-auto mt-12 flex flex-wrap justify-center gap-24">
-        {Array.from({ length: 100 }).map((_, index) => {
+        {mockData.map((i, index) => {
           return (
             <Card
               key={index}
               facebook={"fa"}
               telegram={"te"}
               instragram="i"
-              title="Title"
-              desc="Don't know where to start in?"
+              title={i.title}
+              desc={i.desc}
+              image={i.image}
               onClick={() => {
                 navigate({
                   pathname: "/profile",

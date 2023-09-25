@@ -8,6 +8,7 @@ type CardProps = {
   facebook: string | undefined;
   telegram: string | undefined;
   instragram: string | undefined;
+  image: string;
   onClick: () => void;
 };
 
@@ -15,13 +16,13 @@ function Card(props: CardProps) {
   return (
     <div className="flex max-w-max flex-col justify-center gap-3">
       <div
-        className="mx-auto aspect-[9/10] w-[364px] bg-slate-400"
+        className="mx-auto aspect-[9/9] w-[364px] bg-slate-400"
         onClick={() => {
           props.onClick();
         }}
       >
         <img
-          src="https://th.bing.com/th/id/OIP.-ykukAQoEaWAWrP7mYGrPQHaKi?pid=ImgDet&rs=1"
+          src={props.image}
           className="cursor-pointer bg-cover object-cover"
         />
       </div>
