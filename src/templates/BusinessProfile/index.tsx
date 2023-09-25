@@ -38,6 +38,7 @@ import { useQueryUserBy } from "@/api/user/hooks";
 import Avvvatars from "avvvatars-react";
 import { useQueryCategory } from "@/api/hooks";
 import { useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -82,7 +83,7 @@ const BusinessProfile = () => {
   const queryUser = useQueryUserBy(authInfo.id, true);
   const queryBusinessProfile = useQueryBusinessProfile(authInfo.id);
   const queryCategory = useQueryCategory(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (queryCategory.isSuccess) {
       setCategory(queryCategory.data?.data.data);
@@ -173,7 +174,7 @@ const BusinessProfile = () => {
               </button>
               <button
                 onClick={() => {
-                  setTab(2);
+                  navigate("/subscriptions");
                 }}
                 className={twMerge([
                   "my-3 flex h-[60px] w-[300px] items-center justify-start gap-2 rounded-md pl-9 text-[20px] font-medium text-black",
@@ -532,3 +533,4 @@ const BusinessProfile = () => {
 };
 
 export default BusinessProfile;
+

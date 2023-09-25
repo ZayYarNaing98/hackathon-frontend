@@ -24,7 +24,7 @@ function PaymentTemplate() {
     },
     onError() {},
   });
-  const useQuerySubscr = useQuerySubscription(auth.id);
+  const useQuerySubscr = useQuerySubscription(directPayment.id);
   const [toggle, setToggle] = useState(false);
 
   if (useQuerySubscr.isLoading) return null;
@@ -139,3 +139,4 @@ function PaymentTemplate() {
 }
 
 export default PaymentTemplate;
+

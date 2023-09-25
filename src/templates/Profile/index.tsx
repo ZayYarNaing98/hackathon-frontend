@@ -314,3 +314,4 @@ const ProfileTemplate = () => {
 };
 
 export default ProfileTemplate;
+

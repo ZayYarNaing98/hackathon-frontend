@@ -33,7 +33,7 @@ const SubscriptionTemplate = () => {
   const onSubscribe = () => {
     if (token) {
       navigate({
-        pathname: "/business-profile",
+        pathname: "/payment",
       });
     } else {
       setDialogStatus("signIn");
@@ -59,7 +59,7 @@ const SubscriptionTemplate = () => {
           }}
           title="Basic Plan"
           level={1}
-          price={10000}
+          price={9000}
           list={["2 posts (No Time Limit)", "Low Visiability"]}
           ctaLabel="Subscribe Now"
         />
@@ -70,8 +70,8 @@ const SubscriptionTemplate = () => {
           }}
           title="Standard Plan"
           level={2}
-          price={20000}
-          list={["4 posts (No Time Limit)", "Low Visiability"]}
+          price={18000}
+          list={["4 posts (No Time Limit)", "Normal Visiability"]}
           ctaLabel="Subscribe Now"
         />
         <SubscriptionCard
@@ -81,8 +81,8 @@ const SubscriptionTemplate = () => {
           }}
           title="Premium Plan"
           level={3}
-          price={30000}
-          list={["6 posts (No Time Limit)", "Low Visiability"]}
+          price={27000}
+          list={["6 posts (No Time Limit)", "High Visiability"]}
           ctaLabel="Subscribe Now"
         />
       </div>
@@ -118,3 +118,4 @@ const SubscriptionTemplate = () => {
 };
 
 export default SubscriptionTemplate;
+
